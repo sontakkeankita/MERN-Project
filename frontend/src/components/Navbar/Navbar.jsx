@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // Added useState import
+import React, { useState } from 'react'; 
 import { Link } from "react-router-dom";
 import { FaGripLines } from "react-icons/fa";
 
@@ -59,17 +59,22 @@ const Navbar = () => {
               SignUp
             </Link>
           </div>
-          <button className="text-white text-2xl hover:text-zinc-400">
+          <button
+            className="block md:hidden text-white text-2xl hover:text-zinc-400" 
+            onClick={() => setMobileNav(MobileNav === "hidden" ? "block" : "hidden")} // Fixed the state toggling logic
+          >
             <FaGripLines />
           </button>
         </div>
       </nav>
+      
       <div className={`${MobileNav} bg-zinc-800 h-screen absolute top-0 left-0 w-full z-40 flex flex-col items-center justify-center`}>
         {links.map((items, i) => (
           <Link 
             to={items.link}
             className="text-white text-4xl mb-4 font-semibold hover:text-blue-500 transition-all duration-300"
             key={i}
+            onClick={() => setMobileNav("hidden")} // Close the menu after clicking
           >
             {items.title}
           </Link>

@@ -4,7 +4,7 @@ import {authActions} from "../store/auth";
 import axios from "axios"; // Correct
 import {useDispatch} from "react-redux";
 
-const Login = () => {
+const LogIn = () => {
   const [Values, setValues] = useState({
     username:"",
     password:"",
@@ -31,9 +31,11 @@ const Login = () => {
         );
        // console.log(response.data);
        dispatch(authActions.login());
-        localStorage.setItem("id",response.data._id);
+       dispatch(authActions.changeRole(response.data.role));
+        localStorage.setItem("id",response.data.id);
         localStorage.setItem("token",response.data.token);
         localStorage.setItem("role",response.data.role);
+        navigate("/profile")
       }
     }catch(error){
       alert(error.response.data.message);
@@ -97,4 +99,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LogIn;

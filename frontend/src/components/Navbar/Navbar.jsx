@@ -45,16 +45,29 @@ if (isLoggedIn === false) {
         <div className="nav-links-bookheaven block md:flex items-center gap-4">
           <div className="hidden md:flex gap-4">
             {links.map((items, i) => (
+             <div className = "flex items-center justify-center">
+             {items.title === "Profile" ? 
               <Link 
+                to={items.link}
+                className="px-4 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300"
+                key={i}
+              >
+                {items.title}
+              </Link> 
+               : <Link 
                 to={items.link}
                 className="hover:text-blue-500 transition-all duration-300"
                 key={i}
               >
                 {items.title}
-              </Link>
+              </Link>}
+             </div>
+
             ))}
           </div>
-          <div className="hidden md:flex gap-4">
+          
+          {isLoggedIn === false && (
+            <div className="hidden md:flex gap-4">
             <Link
               to="/LogIn"
               className="px-4 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300">
@@ -66,9 +79,15 @@ if (isLoggedIn === false) {
               SignUp
             </Link>
           </div>
+          )}
+
           <button
             className="block md:hidden text-white text-2xl hover:text-zinc-400" 
-            onClick={() => setMobileNav(MobileNav === "hidden" ? "block" : "hidden")} // Fixed the state toggling logic
+            onClick={() => 
+              MobileNav === "hidden" 
+                ? setMobileNav("block")
+               :  setMobileNav("hidden")
+              } 
           >
             <FaGripLines />
           </button>
@@ -86,7 +105,9 @@ if (isLoggedIn === false) {
             {items.title}
           </Link>
         ))}
-        <Link
+        {isLoggedIn === false && (
+          <>
+          <Link
           to="/LogIn"
           className={`px-8 mb-8 text-3xl font-semibold py-2 border border-blue-500 rounded text-white hover:bg-white hover:text-zinc-800 transition-all duration-300`}>
           LogIn
@@ -96,6 +117,8 @@ if (isLoggedIn === false) {
           className={`px-8 mb-8 text-3xl font-semibold py-2 bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300`}>
           SignUp
         </Link>
+          </>
+        )}
       </div>
     </>
   );

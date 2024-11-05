@@ -45,7 +45,7 @@ router.get("/get-order-history",authenticateToken,async(req,res) => {
         const orderData = userData.orders.reverse();
         return res.json({
             status:"Success",
-            data:ordersData,
+            data:orderData,
         });
     }catch(error){
         console.log(error);

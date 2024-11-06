@@ -14,6 +14,8 @@ import {useDispatch , useSelector} from "react-redux";
 import {authActions} from "./store/auth";
 import UserOrderHistory from "./components/Profile/UserOrderHistory"; // Adjust the path as necessary
 import Settings from "./components/Profile/Settings";
+import AllOrder from "./pages/AllOrder";
+import AddBook from "./pages/AddBook";
 
 
 const App = () => {
@@ -36,7 +38,11 @@ const App = () => {
           <Route path="/all-books" element={<AllBooks />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<Profile />} >
-          <Route index element = {<Favourites/>}/>
+          {role === "user" ? <Route index element = {<Favourites/>}/> : <Route index element = {<AllOrder />} />
+          }
+          {role === "admin" && (
+            <Route path = "/profile/add-book" element = {<AddBook/>} />
+          )}
           <Route path = "/profile/orderHistory" element = {<UserOrderHistory/>} />
           <Route path = "/profile/settings" element = {<Settings/>} />
           </Route>

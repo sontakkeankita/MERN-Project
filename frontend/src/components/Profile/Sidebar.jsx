@@ -4,7 +4,7 @@ import { FaSignOutAlt } from 'react-icons/fa'; // Updated to the correct icon
 
 const Sidebar = ({ data }) => {
   return (
-    <div className="bg-zinc-800 p-4 rounded flex flex-col items-center justify-between h-[100%]">
+    <div className="bg-zinc-800 p-4 rounded flex flex-col items-center justify-between h-auto lg:h-[100%]">
       <div className="flex items-center flex-col justify-center">
         <img src={data.avatar} alt="User Avatar" />
         <p className="mt-3 text-xl text-zinc-100 font-semibold">

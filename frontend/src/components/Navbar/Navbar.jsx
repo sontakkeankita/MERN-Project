@@ -21,12 +21,23 @@ const Navbar = () => {
       title: "Profile",
       link: "/profile",
     },
+    {
+      title: "Admin Profile",
+      link: "/profile",
+    },
   ];
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const role = useSelector((state) => state.auth.role);
 
   if (isLoggedIn === false) {
     links.splice(2, 2);
+  }
+  if (isLoggedIn === true && role === "user") {
+    links.splice(4, 1);
+  }
+  if (isLoggedIn === true && role === "admin") {
+    links.splice(3, 1);
   }
 
   const [MobileNav, setMobileNav] = useState("hidden");
@@ -45,19 +56,22 @@ const Navbar = () => {
         <div className="nav-links-bookheaven block md:flex items-center gap-4">
           <div className="hidden md:flex gap-4">
             {links.map((items, i) => (
-              <div className="flex items-center justify-center" key={`${items.title}-${i}`}> {/* Ensure uniqueness */}
-                {items.title === "Profile" ? 
+              <div className="flex items-center" key={i}> {/* Ensure uniqueness */}
+                {items.title === "Profile" || items.title === "Admin Profile" ? (
                   <Link 
                     to={items.link}
-                    className="px-4 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300">
+                    className="px-4 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300"
+                  >
                     {items.title}
                   </Link> 
-                  : 
+                ) : (
                   <Link 
                     to={items.link}
-                    className="hover:text-blue-500 transition-all duration-300">
+                    className="hover:text-blue-500 transition-all duration-300"
+                  >
                     {items.title}
-                  </Link>}
+                  </Link>
+                )}
               </div>
             ))}
           </div>
@@ -121,6 +135,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 
 
 

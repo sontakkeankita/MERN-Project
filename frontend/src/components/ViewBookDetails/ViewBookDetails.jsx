@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link ,useParams } from "react-router-dom";
 import Loader from "../Loader/Loader"; // Make sure to import Loader if it's being used
 import { GrLanguage } from "react-icons/gr"; // Import the GrLanguage icon if it's used
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import {useSelector} from "react-redux";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import {useNavigate} from "react-router-dom";
 
 const ViewBookDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [data, setData] = useState(null);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn); 
   const role = useSelector((state) => state.auth.role);
@@ -49,6 +51,16 @@ const ViewBookDetails = () => {
     );
     alert(response.data.message);
   };
+  const deleteBook = async() => {
+    const response = await axios.delete(
+      "http://localhost:3000/api/v1/delete-book",
+      {headers}
+    );
+    alert(response.data.message);
+    navigate("/all-books");
+  };
+  
+
   return (
     <>
       {data ? (
@@ -78,11 +90,14 @@ const ViewBookDetails = () => {
               )}
               {isLoggedIn === true && role === "admin" && (
                 <div className="flex flex-col md:flex-row lg:flex-col items-center justify-between lg:justify-start mt-8 lg:mt-0">
-                <button className="bg-white rounded lg:rounded-full text-3xl p-3  flex items-center justify-center">
+                <Link to = {`/updateBook/${id}`}className="bg-white rounded lg:rounded-full text-3xl p-3  flex items-center justify-center">
                 <FaEdit />{" "}
                  <span className = "ms-4 block lg:hidden">Edit</span>
-                </button>
-                <button className="text-red-500 rounded lg:rounded-full text-3xl p-3 mt-8 md:mt-0 lg:mt-8 bg-white flex items-center justify-center">
+                </Link>
+                <button className="text-red-500 rounded lg:rounded-full text-3xl p-3 mt-8 md:mt-0 lg:mt-8 bg-white flex items-center justify-center"
+                onClick = {deleteBook}
+
+                >
                 <MdDelete />{" "}
                    <span className = "ms-4 block lg:hidden">Delete Book</span>
                 </button>

@@ -16,6 +16,8 @@ import UserOrderHistory from "./components/Profile/UserOrderHistory"; // Adjust 
 import Settings from "./components/Profile/Settings";
 import AllOrder from "./pages/AllOrder";
 import AddBook from "./pages/AddBook";
+import UpdateBook from "./pages/UpdateBook";
+
 
 
 const App = () => {
@@ -48,6 +50,7 @@ const App = () => {
           </Route>
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/LogIn" element={<LogIn />} />
+          <Route path="/updateBook/:id" element={<UpdateBook />} />
           <Route path="view-book-details/:id" element = {<ViewBookDetails/>}/>
         </Routes>
         <Footer />

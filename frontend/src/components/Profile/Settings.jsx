@@ -18,7 +18,7 @@ const Settings = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:3000/api/v1/get-user-information',
+          'https://mern-project-1-krwa.onrender.com/api/v1/get-user-information',
           { headers }
         );
         setProfileData(response.data);
@@ -32,7 +32,7 @@ const Settings = () => {
   
   const submitAddress = async() => {
     const response = await axios.put(
-      "http://localhost:3000/api/v1/update-address",
+      "https://mern-project-1-krwa.onrender.com/api/v1/update-address",
       value,
       {headers}
     );

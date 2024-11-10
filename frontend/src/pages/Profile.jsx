@@ -17,7 +17,7 @@ const Profile = () => {
   useEffect(() => {
     const fetch = async() => {
       const response = await axios.get(
-        "http://localhost:3000/api/v1/get-user-information",
+        "https://mern-project-1-krwa.onrender.com/api/v1/get-user-information",
         {headers}
       );
       setProfile(response.data);

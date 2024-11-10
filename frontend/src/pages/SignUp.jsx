@@ -27,7 +27,7 @@ const SignUp = () => {
       }
       else{
         const response = await axios.post(
-          "http://localhost:3000/api/v1/sign-up",
+          "https://mern-project-1-krwa.onrender.com/api/v1/sign-up",
           Values
         );
         alert(response.data.message);

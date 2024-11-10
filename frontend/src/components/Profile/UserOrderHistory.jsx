@@ -14,7 +14,7 @@ const UserOrderHistory = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/v1/get-order-history",
+          "https://mern-project-1-krwa.onrender.com/api/v1/get-order-history",
           { headers }
         );
         setOrderHistory(response.data.data);

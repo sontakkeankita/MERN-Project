@@ -21,7 +21,7 @@ const AllOrder = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/v1/get-all-orders",
+          "https://mern-project-1-krwa.onrender.com/api/v1/get-all-orders",
           { headers }
         );
         setAllOrders(response.data.data);
@@ -49,7 +49,7 @@ const AllOrder = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/v1/update-status/${id}`,
+        `https://mern-project-1-krwa.onrender.com/api/v1/update-status/${id}`,
         Values,
         { headers }
       );

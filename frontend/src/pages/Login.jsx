@@ -26,7 +26,7 @@ const LogIn = () => {
       }
       else{
         const response = await axios.post(
-          "http://localhost:3000/api/v1/sign-in",
+          "https://mern-project-1-krwa.onrender.com/api/v1/sign-in",
           Values
         );
        // console.log(response.data);

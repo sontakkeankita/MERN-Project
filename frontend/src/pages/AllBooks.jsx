@@ -9,7 +9,7 @@ const AllBooks = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        "http://localhost:3000/api/v1/get-all-books"
+        "https://mern-project-1-krwa.onrender.com/api/v1/get-all-books"
       );
       setData(response.data.data); // Assuming the API sends `data.data` as the book array
     };
